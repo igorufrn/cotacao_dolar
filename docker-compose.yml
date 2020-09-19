@@ -1,0 +1,31 @@
+version: '3.4'
+services:
+  db:
+    image: mysql/mysql-server:8.0.21-1.1.17    
+    restart: always
+    environment:
+      TZ: America/Sao_Paulo
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: bancodados
+    ports:
+      - "3306:33061"
+    networks:
+      - desafio-network
+  cotacao_app:
+    image: igorufrn/cotacao_dolar:0.1
+    restart: always    
+    #working_dir: /app
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "8080:8080" 
+    command: mvn spring-boot:run
+    depends_on:
+      - db
+    networks:
+      - desafio-network
+networks:
+    desafio-network:
+        driver: bridge
