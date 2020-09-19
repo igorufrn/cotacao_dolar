@@ -32,14 +32,7 @@ public class SwaggerConfig {
                 .select()
 
                 .paths(Predicates.not(PathSelectors.regex("/error")))
-                .paths(Predicates.not(PathSelectors.regex("/oauth/authorize")))
-                .paths(Predicates.not(PathSelectors.regex("/oauth/check_token")))
-                .paths(Predicates.not(PathSelectors.regex("/oauth/token")))
-                .paths(Predicates.not(PathSelectors.regex("/oauth/token_key")))
-                .paths(Predicates.not(PathSelectors.regex("/oauth/confirm_access")))
-                .paths(Predicates.not(PathSelectors.regex("/oauth/error")))
-                .paths(Predicates.not(PathSelectors.regex("/tokens/logout")))
-
+                .paths(Predicates.not(PathSelectors.regex("/actuator.*")))
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any()).build()
                 .pathMapping("/")
